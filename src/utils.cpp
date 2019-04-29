@@ -39,3 +39,36 @@ void printVector(vector<int> v) {
 
     cout << endl;
 }
+
+void quicksort(vector<int> &vec, int l, int r) {
+    int i, j, mid, piv;
+    i = l;
+    j = r;
+    mid = l + (r - l) / 2;
+    piv = vec[mid];
+
+    while (i < r || j > l) {
+        while (vec[i] < piv)
+            i++;
+        while (vec[j] > piv)
+            j--;
+
+        if (i <= j) {
+            swap(vec, i, j); //error=swap function doesnt take 3 arguments
+            i++;
+            j--;
+        } else {
+            if (i < r)
+                quicksort(vec, i, r);
+            if (j > l)
+                quicksort(vec, l, j);
+            return;
+        }
+    }
+}
+
+void swap(vector<int>& v, int x, int y) {
+    int temp = v[x];
+    v[x] = v[y];
+    v[y] = temp;
+}
